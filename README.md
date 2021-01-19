@@ -28,7 +28,7 @@ sudo chown -Rv root:git /etc/gitea
 sudo chmod -Rv 770 /etc/gitea
 
 sudo nano /etc/systemd/system/gitea.service
-
+```
 copy bellow code and save:
 > [Unit]
 > Description=Gitea (Git with a cup of tea)
@@ -52,7 +52,7 @@ copy bellow code and save:
 > 
 > [Install]
 > WantedBy=multi-user.target
-
+```
 sudo systemctl start gitea
 sudo systemctl status gitea
 sudo systemctl enable gitea
