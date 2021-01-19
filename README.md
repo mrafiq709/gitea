@@ -5,7 +5,8 @@ Installing Gitea – A self-hosted Git Server on Ubuntu 20.04 LTS
 sudo apt update
 sudo apt install wget -y
 sudo apt install git -y
-
+```
+```
 sudo apt install mysql-server mysql-client -y
 sudo mysql -u root -p
 mysql> CREATE USER 'gitea' IDENTIFIED BY 'secret';
@@ -13,7 +14,8 @@ mysql> CREATE DATABASE gitea CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci
 mysql> GRANT ALL PRIVILEGES ON gitea.* TO 'gitea';
 mysql> FLUSH PRIVILEGES;
 mysql> exit
-
+```
+```
 sudo wget -O /usr/local/bin/gitea https://dl.gitea.io/gitea/1.11.4/gitea-1.11.4-linux-amd64
 sudo chmod +x /usr/local/bin/gitea
 gitea --version
@@ -60,7 +62,8 @@ WantedBy=multi-user.target
 sudo systemctl start gitea
 sudo systemctl status gitea
 sudo systemctl enable gitea
-
+```
+```
 ip a
 http://ip_address:3000
 ```
@@ -70,7 +73,8 @@ How to Install Gitea on CentOS 7
 ```
 yum update
 yum install wget git nano epel-release
-
+```
+```
 useradd git
 
 mkdir -p /etc/gitea /var/lib/gitea/{custom,data,indexers,public,log}
@@ -78,23 +82,27 @@ chown git:git /var/lib/gitea/{data,indexers,log}
 chmod 750 /var/lib/gitea/{data,indexers,log}
 chown root:git /etc/gitea
 chmod 770 /etc/gitea
-
+```
+```
 yum install mariadb-server
 systemctl enable mariadb
 systemctl start mariadb
 mysql_secure_installation
-
+```
+```
 mysql -u root -p
 mysql> create database gitea;
 mysql> grant all on gitea.* to gitea@localhost identified by 'new_pass';
 mysql> flush privileges;
 mysql> quit
-
+```
+```
 export GITEAVER=1.8.3
 wget https://github.com/go-gitea/gitea/releases/download/v${GITEAVER}/gitea-${GITEAVER}-linux-amd64 -O /usr/local/bin/gitea
 chmod +x /usr/local/bin/gitea
 gitea -v
-
+```
+```
 nano /etc/systemd/system/gitea.service
 copy & pase, save bellow code:
 
@@ -116,12 +124,16 @@ Environment=USER=git HOME=/home/git GITEA_WORK_DIR=/var/lib/gitea
 
 [Install]
 WantedBy=multi-user.target
-
+```
+```
 systemctl daemon-reload
 systemctl start gitea
 systemctl status gitea
-
+```
+```
 yum install nginx
+```
+```
 nano /etc/nginx/conf.d/gitea.conf
 copy & paste, save bellow code:
 
@@ -137,7 +149,8 @@ server {
         proxy_pass http://gitea;
      }
 }
-
+```
+```
 systemctl restart nginx
 
 http://git.example.com/install
